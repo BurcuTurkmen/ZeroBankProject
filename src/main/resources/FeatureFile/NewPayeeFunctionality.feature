@@ -8,8 +8,6 @@ Feature: New Payee Functionality
     And  User go to AddNewPayee tab
     Then User should add "<Payee Name>"
     Then User should fill "<Payee Address>", "<Account>", "<Payee Details>"
-    #Then User should fill "<Account>"
-    #Then User should fill "<Payee Details>"
     And  User click on Add Button
     Then User should see success message
 

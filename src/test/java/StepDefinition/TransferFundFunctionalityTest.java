@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
 public class TransferFundFunctionalityTest {
@@ -95,8 +96,14 @@ public class TransferFundFunctionalityTest {
     @Then("User should see success text")
     public void user_should_see_success_text() {
         WebElement successText = driver.findElement(By.cssSelector("div[class='alert alert-success']"));
+        System.out.println("Success Message: " + successText.getText());
+
+        String expectedText ="You successfully submitted your transaction.";
 
         Assert.assertTrue(successText.getText().toLowerCase().contains("success"));
+        Assert.assertEquals(successText.getText(), expectedText);
+
+        driver.quit();
 
     }
 

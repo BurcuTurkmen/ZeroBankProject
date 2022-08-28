@@ -104,12 +104,14 @@ public class PurchaseForeignCurrencyTest {
     @Then("User should see confirmation message")
     public void user_should_see_confirmation_message() {
         WebElement confirmationMessage = driver.findElement(By.id("alert_content"));
-        //System.out.println(confirmationMessage);
+        System.out.println("Success Message: " + confirmationMessage.getText());
 
         String expectedMessage = "Foreign currency cash was successfully purchased.";
 
         Assert.assertTrue(confirmationMessage.getText().toLowerCase().contains("success"));
         Assert.assertEquals(confirmationMessage.getText(), expectedMessage);
+
+        driver.quit();
 
     }
 

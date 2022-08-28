@@ -24,7 +24,6 @@ public class NewPayeeFunctionalityTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         driver.get("http://zero.webappsecurity.com/login.html");
-
     }
 
     @When("User login to ZeroBank with valid username and password")
@@ -64,7 +63,6 @@ public class NewPayeeFunctionalityTest {
     public void user_should_add(String payeeName) {
         WebElement addPayeeName = driver.findElement(By.id("np_new_payee_name"));
         addPayeeName.sendKeys(payeeName);
-
     }
 
     @Then("User should fill {string}, {string}, {string}")
@@ -88,7 +86,12 @@ public class NewPayeeFunctionalityTest {
     @Then("User should see success message")
     public void user_should_see_success_message() {
         WebElement successMessage = driver.findElement(By.id("alert_content"));
+        System.out.println("Success Message: " + successMessage.getText());
+
+        String expectedMessage = "The new payee Xfinity was successfully created.";
+
         Assert.assertTrue(successMessage.getText().toLowerCase().contains("success"));
+        Assert.assertEquals(successMessage.getText(), expectedMessage);
 
         driver.quit();
     }
