@@ -83,15 +83,21 @@ public class NewPayeeFunctionalityTest {
         addButton.click();
     }
 
-    @Then("User should see success message")
-    public void user_should_see_success_message() {
+    @Then("Result should be {string}")
+    public void result_should_be(String result) {
+
+        if (result.equals("successful")) {
         WebElement successMessage = driver.findElement(By.id("alert_content"));
         System.out.println("Success Message: " + successMessage.getText());
+        Assert.assertTrue(successMessage.isDisplayed());
 
-        String expectedMessage = "The new payee Xfinity was successfully created.";
+        WebElement makePaymentsMessage = driver.findElement(By.className("board-header"));
+        Assert.assertTrue(makePaymentsMessage.isDisplayed());
 
-        Assert.assertTrue(successMessage.getText().toLowerCase().contains("success"));
-        Assert.assertEquals(successMessage.getText(), expectedMessage);
+        }else if(result.equals("unsuccessful")){
+        WebElement makePaymentsMessage = driver.findElement(By.className("board-header"));
+        Assert.assertFalse(makePaymentsMessage.isDisplayed());
+        }
 
         driver.quit();
     }

@@ -7,13 +7,15 @@ Feature: New Payee Functionality
     Then User go to PayBills tab
     And  User go to AddNewPayee tab
     Then User should add "<Payee Name>"
-    Then User should fill "<Payee Address>", "<Account>", "<Payee Details>"
-    And  User click on Add Button
-    Then User should see success message
+    And User should fill "<Payee Address>", "<Account>", "<Payee Details>"
+    Then  User click on Add Button
+    Then Result should be "<Result>"
 
     Examples:
-    | Payee Name | Payee Address | Account | Payee Details |
-    | Xfinity    | Golf Rd       | 9876543 | Internet      |
+    | Payee Name | Payee Address | Account | Payee Details | Result       |
+    | Xfinity    | Golf Rd       | 9876543 | Internet      | successful   |
+    | NorthShore |               | 1234567 | Gas           | unsuccessful |
+    | T-Mobile   | Town Rd       |         | Mobile        | unsuccessful |
 
 
 
